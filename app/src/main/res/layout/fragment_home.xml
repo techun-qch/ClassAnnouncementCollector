@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+    <LinearLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:context=".ui.home.HomeFragment"
+        tools:layout_editor_absoluteX="1dp">
+
+        <EditText
+            android:id="@+id/ed_textline"
+            android:layout_gravity="center"
+            android:layout_width="337dp"
+            android:layout_height="0dp"
+            android:layout_weight="4"
+            android:background="@drawable/edittext_border"
+            android:ems="10"
+            android:gravity="start|top"
+            android:inputType="textMultiLine"
+            android:hint="@string/copy"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+
+    <LinearLayout
+        android:layout_gravity="center"
+        android:gravity="center"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="2"
+        android:orientation="vertical">
+
+        <Button
+            android:id="@+id/bt_choose_ddl"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="截止日期选择"
+            android:layout_gravity="center"
+            />
+
+
+        <Button
+            android:id="@+id/bt_addMessages"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="添  加  通  知 "
+            android:layout_gravity="center"
+            />
+
+        </LinearLayout>
+    </LinearLayout>
+
