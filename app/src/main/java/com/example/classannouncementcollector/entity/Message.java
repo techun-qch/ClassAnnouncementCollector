@@ -1,5 +1,6 @@
 package com.example.classannouncementcollector.entity;
 
+import androidx.annotation.NonNull;
 import androidx.room.ColumnInfo;
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
@@ -15,9 +16,12 @@ public class Message {
 
     private String Deadline;
 
-    public Message(String detail,String Deadline){
+    private String category;
+
+    public Message(String detail,String Deadline,String category){
         this.detail=detail;
         this.Deadline=Deadline;
+        this.category=category;
     }
 
     public String getDetail() {
@@ -43,4 +47,19 @@ public class Message {
     public void setId(int id) {
         this.id = id;
     }
+
+    public String getCategory() {
+        return category;
+    }
+
+    public void setCategory(String category) {
+        this.category = category;
+    }
+
+    @NonNull
+    @Override
+    public String toString(){
+        return this.id+":"+this.detail+this.Deadline+this.category;
+    }
+
 }

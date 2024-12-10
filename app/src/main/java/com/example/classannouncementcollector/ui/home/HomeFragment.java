@@ -58,14 +58,12 @@ public class HomeFragment extends Fragment {
                     @Override
                     public void run() {
 
-                        long id =MainActivity.messageDao.insertPerson(new Message(ed_input_message,date));
+                        long id =MainActivity.messageDao.insertPerson(new Message(ed_input_message,date,"默认"));
                         if(id > 0){
                             Looper.prepare();
                             Toast.makeText(getActivity(),"添加成功",Toast.LENGTH_SHORT).show();
                             Looper.loop();
                         }
-
-
                     }
                 }).start();
 
