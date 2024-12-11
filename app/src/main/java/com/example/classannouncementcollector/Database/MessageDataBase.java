@@ -1,6 +1,5 @@
-package com.example.classannouncementcollector;
+package com.example.classannouncementcollector.Database;
 
-import androidx.room.AutoMigration;
 import androidx.room.Database;
 import androidx.room.RoomDatabase;
 
@@ -11,3 +10,4 @@ import com.example.classannouncementcollector.entity.Message;
 public abstract class MessageDataBase extends RoomDatabase {
     public abstract MessageDao mMessageDao();
 }
+

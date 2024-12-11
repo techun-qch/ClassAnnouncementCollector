@@ -2,6 +2,9 @@ package com.example.classannouncementcollector;
 
 import android.os.Bundle;
 
+import com.example.classannouncementcollector.Database.MessageCategoryDataBase;
+import com.example.classannouncementcollector.Database.MessageDataBase;
+import com.example.classannouncementcollector.dao.MessageCategoryDao;
 import com.example.classannouncementcollector.dao.MessageDao;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
@@ -18,6 +21,7 @@ public class MainActivity extends AppCompatActivity {
 
     private ActivityMainBinding binding;
     public static MessageDao messageDao;
+    public static MessageCategoryDao messageCategoryDao;
 
 
 
@@ -34,7 +38,15 @@ public class MainActivity extends AppCompatActivity {
                 "message"
         ).build();
 
+
+        MessageCategoryDataBase messageCategoryDataBase=Room.databaseBuilder(
+                getApplicationContext(),
+                MessageCategoryDataBase.class,
+                "messageCategory"
+        ).build();
+
         messageDao =messageDataBase.mMessageDao();
+        messageCategoryDao=messageCategoryDataBase.messageCategoryDao();
 
         binding = ActivityMainBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());

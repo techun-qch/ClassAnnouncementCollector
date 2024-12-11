@@ -8,8 +8,11 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -21,12 +24,19 @@ import com.example.classannouncementcollector.MainActivity;
 import com.example.classannouncementcollector.R;
 import com.example.classannouncementcollector.databinding.FragmentHomeBinding;
 import com.example.classannouncementcollector.entity.Message;
+import com.example.classannouncementcollector.entity.MessageCategory;
+import com.example.classannouncementcollector.ui.CategpryDialog;
 
 import java.util.Calendar;
+import java.util.List;
 import java.util.Objects;
 
 
 public class HomeFragment extends Fragment {
+
+    private String select_category="默认";
+
+    private Button bt_add_Category;
 
     private FragmentHomeBinding binding;
     public static Calendar calendar = Calendar.getInstance();
@@ -46,7 +56,41 @@ public class HomeFragment extends Fragment {
 
         Button bt_add=root.findViewById(R.id.bt_addMessages);
         Button bt_add_ddl=root.findViewById(R.id.bt_choose_ddl);
+        bt_add_Category=root.findViewById(R.id.bt_add_Category);
+
         EditText editText=root.findViewById(R.id.ed_textline);
+
+        Spinner spinner=root.findViewById(R.id.spinner_location);
+
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                List<MessageCategory> messageCategoryList =MainActivity.messageCategoryDao.getALLMessageCategory();
+                int num=messageCategoryList.size();
+                String[] strAll = new String[num+1];
+                strAll[0]="默认";
+                for(int i=1;i<=num;i++){
+                    strAll[i]=messageCategoryList.get(i-1).getCategoryValue();
+                }
+                ArrayAdapter<String> adapter=
+                        new ArrayAdapter<>(getContext(),android.R.layout.simple_spinner_item,strAll);
+                spinner.setAdapter(adapter);
+
+                spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+                    @Override
+                    public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                        select_category = parent.getItemAtPosition(position).toString();
+                    }
+
+                    @Override
+                    public void onNothingSelected(AdapterView<?> parent) {
+
+                    }
+                });
+
+            }
+        }).start();
+//
 
 
         bt_add.setOnClickListener(new View.OnClickListener() {
@@ -58,7 +102,7 @@ public class HomeFragment extends Fragment {
                     @Override
                     public void run() {
 
-                        long id =MainActivity.messageDao.insertPerson(new Message(ed_input_message,date,"默认"));
+                        long id =MainActivity.messageDao.insertPerson(new Message(ed_input_message,date,select_category));
                         if(id > 0){
                             Looper.prepare();
                             Toast.makeText(getActivity(),"添加成功",Toast.LENGTH_SHORT).show();
@@ -94,6 +138,15 @@ public class HomeFragment extends Fragment {
                     // 关闭dialog
                     datePickerDialog.dismiss();
                 });
+            }
+        });
+
+        bt_add_Category.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                CategpryDialog categpryDialog =new CategpryDialog(getContext());
+                categpryDialog.show();
+
             }
         });
 
