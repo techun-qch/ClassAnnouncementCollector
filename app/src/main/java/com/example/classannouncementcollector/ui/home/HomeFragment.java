@@ -4,7 +4,6 @@ import android.app.DatePickerDialog;
 import android.content.DialogInterface;
 import android.os.Bundle;
 import android.os.Looper;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,7 +12,6 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -29,22 +27,19 @@ import com.example.classannouncementcollector.ui.CategpryDialog;
 
 import java.util.Calendar;
 import java.util.List;
-import java.util.Objects;
 
 
 public class HomeFragment extends Fragment {
 
     private String select_category="默认";
 
-    private Button bt_add_Category;
-
     private FragmentHomeBinding binding;
     public static Calendar calendar = Calendar.getInstance();
 
-    // 截止日期默认3天后
+    // 截止日期默认5天后
     public static String date=calendar.get(Calendar.YEAR)+
             Integer.toString(calendar.get(Calendar.MONTH))+
-            (calendar.get(Calendar.DAY_OF_MONTH)+3);
+            (calendar.get(Calendar.DAY_OF_MONTH)+5);
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
@@ -56,7 +51,7 @@ public class HomeFragment extends Fragment {
 
         Button bt_add=root.findViewById(R.id.bt_addMessages);
         Button bt_add_ddl=root.findViewById(R.id.bt_choose_ddl);
-        bt_add_Category=root.findViewById(R.id.bt_add_Category);
+        Button bt_add_Category = root.findViewById(R.id.bt_add_Category);
 
         EditText editText=root.findViewById(R.id.ed_textline);
 
@@ -133,7 +128,7 @@ public class HomeFragment extends Fragment {
                     int monthOfYear = datePickerDialog.getDatePicker().getMonth() + 1;
                     int dayOfMonth = datePickerDialog.getDatePicker().getDayOfMonth();
                     date= year +Integer.toString(monthOfYear)+ dayOfMonth;
-                    Toast.makeText(getActivity(),date,Toast.LENGTH_SHORT).show();
+
 
                     // 关闭dialog
                     datePickerDialog.dismiss();
@@ -161,4 +156,5 @@ public class HomeFragment extends Fragment {
         super.onDestroyView();
         binding = null;
     }
+
 }
