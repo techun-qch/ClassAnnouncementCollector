@@ -1,8 +1,8 @@
 <resources>
-    <string name="app_name">ClassAnnouncementCollector</string>
+    <string name="app_name">班级通知收集器</string>
     <string name="title_home">录入通知</string>
-    <string name="title_dashboard">通知列表</string>
-    <string name="title_notifications">通知提醒</string>
+    <string name="title_dashboard">所有通知</string>
+    <string name="title_notifications">临期提醒</string>
     <string name="_1">1</string>
     <string name="copy">请粘贴通知</string>
 </resources>

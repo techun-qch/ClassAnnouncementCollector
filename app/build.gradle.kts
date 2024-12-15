@@ -53,4 +53,6 @@ dependencies {
     implementation("androidx.room:room-runtime:$room_version")
     annotationProcessor("androidx.room:room-compiler:$room_version")
 
+//    implementation ("androidx.core:core:2.2.0")
+
 }
